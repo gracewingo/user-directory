@@ -1,5 +1,17 @@
+.appContainer {
+  display: flex;
+  flex-direction: row;
+  margin-left: 0px !important;
+}
+
 /* Panes */
-.userList-pane {
+
+.visitor-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.visitorList-pane {
   margin-left: 0px;
   height: 700px;
   min-width: 200px;
@@ -8,17 +20,11 @@
 }
 
 .preview-pane {
-  margin: 0px;
+  margin: 20px;
   padding-left: 50px;
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
-  margin-left: 0px !important
-}
-
-.header {
+.formContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,13 +39,22 @@
   margin-top: 0px;
 }
 
+.formContainer > h2 {
+  margin-top: 50px;
+}
+
 input {
   padding: 10px;
   width: 150px;
 }
 
-.profile {
-  padding: 16px;
+.visitorList {
+  padding: 50px;
   margin-top: 88px;
+  list-style-type: none;
+}
+
+.visitor {
+  cursor: pointer;
 }
 

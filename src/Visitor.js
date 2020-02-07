@@ -1,12 +1,14 @@
 import React from 'react';
 
-export default function Visitor(props) {
-	console.log(props);
-	return (
-		<div key={props.key} data-id={props.dataId}>
-			<li>
-				{props.firstName} {props.lastName}
-			</li>
-		</div>
-	);
-}
+const Visitor = ({user, showUserProfile }) => (
+	<li
+		className="visitor"
+		key={user.id}
+		data-id={user.id}
+		onClick={() => showUserProfile(user.id)}
+	>
+		{user.first_name} {user.last_name}
+	</li>
+);
+
+export default Visitor;

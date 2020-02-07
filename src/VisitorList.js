@@ -1,9 +1,10 @@
 import React from 'react';
 import Visitor from './Visitor';
+import VisitorDetails from './VisitorDetails';
 
 export default class VisitorList extends React.Component {
 	state = {
-		search: ''
+		profileInfo: []
 	};
 
 	handleClick = (event) => {
@@ -15,41 +16,34 @@ export default class VisitorList extends React.Component {
 		this.props.onSearch({ name, value });
 	};
 
-	updateSearch = (searchTerm) => {
-		console.log(searchTerm);
+	showUserProfile = (id) => {
+		// When user is clicked, show their profile in Visitor Details.
+		let profileData = this.props.data.filter((user) => {
+			return user.id === Number(id);
+		});
 		this.setState({
-			[searchTerm.name]: searchTerm.value.substr(0, 20)
+			profileInfo: profileData
 		});
-		// this.state.userData.filter()
 	};
-	render() {
-		let filteredUserData = this.props.data.filter((user) => {
-			return user.first_name.indexOf(this.state.search) !== -1;
-		});
-		return (
-			<div className="userList-pane">
-				<div className="header">
-					<h2>Visitor List</h2>
-					<form>
-						<label htmlFor="searchText" />
-						<input id="searchText" type="text" name="search" onChange={this.handleChange} />
-					</form>
-				</div>
 
-				<div className="profile">
-					<ul>
-						{filteredUserData.map((user) => {
+	render() {
+
+		return (
+			<div className="visitor-container">
+				<div className="visitorList-pane">
+					<ul className="visitorList">
+						{this.props.data.map((user) => {
 							return (
 								<Visitor
 									key={user.id}
-									dataId={user.id}
-									firstName={user.first_name}
-									lastName={user.last_name}
+									user={user}
+									showUserProfile={this.showUserProfile}
 								/>
 							);
 						})}
 					</ul>
 				</div>
+				{this.state.profileInfo.length ? <VisitorDetails profileData={this.state.profileInfo} /> : null}
 			</div>
 		);
 	}
