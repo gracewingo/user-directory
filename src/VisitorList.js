@@ -1,10 +1,12 @@
 import React from 'react';
 import Visitor from './Visitor';
 import VisitorDetails from './VisitorDetails';
+import DaysActiveChart from './DaysActiveChart';
 
 export default class VisitorList extends React.Component {
 	state = {
-		profileInfo: []
+		profileInfo: [],
+		userLogins: []
 	};
 
 	handleClick = (event) => {
@@ -25,11 +27,11 @@ export default class VisitorList extends React.Component {
 			profileInfo: profileData
 		});
 	};
-
+	
 	render() {
 
 		return (
-			<div className="visitor-container">
+			<div className="visitorContainer">
 				<div className="visitorList-pane">
 					<ul className="visitorList">
 						{this.props.data.map((user) => {
@@ -43,8 +45,20 @@ export default class VisitorList extends React.Component {
 						})}
 					</ul>
 				</div>
-				{this.state.profileInfo.length ? <VisitorDetails profileData={this.state.profileInfo} /> : null}
+				{this.state.profileInfo.length ? 
+				<div className="visitorDetails-container">
+					<VisitorDetails profileData={this.state.profileInfo} /> 
+					<DaysActiveChart data={this.state.profileInfo} />
+				</div>
+				: null}
 			</div>
 		);
 	}
 }
+
+/*
+show the login history for that user, when their visitor name is clicked
+no need to compute all the login data for each visitor if it's not rendered 
+
+
+*/
