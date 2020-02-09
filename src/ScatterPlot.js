@@ -43,7 +43,6 @@ export default class ScatterPlot extends React.Component {
 	render() {
 		let loginData = this.getLoginData();
 		let totalLogins = this.getTotalLogins(loginData);
-		// let labels = [ 'Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'Sept', 'Oct', 'Nov', 'Dec' ];
 		let min, max;
 		if (totalLogins.length) {
 			[ min, max ] = this.getMinAndMax(totalLogins);
