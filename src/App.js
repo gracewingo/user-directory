@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import VisitorList from './VisitorList';
+import ScatterPlot from './ScatterPlot';
+
 
 export default class App extends React.Component {
 	state = {
@@ -41,23 +43,23 @@ export default class App extends React.Component {
 					/>
 				</div>
 				<VisitorList search={this.state.search} data={filteredUserData} />
+				<ScatterPlot data={this.state.userData} />
 			</div>
 		);
 	}
 }
 
 /*
-TODO:
+Sunday: 
+- 
 
-- also, i could pass the whole user data object into the Visitor component 
-- that way when a user clicks on a Visitor, that click render visitor details 
-- make the Visitor Details have a max width of 1100 or something so that the Visitr
-	List doesn't go to a single column
-- consider making DaysActiveChart a functional component 
-- heatmap
-	i could have a dropdown filter with all 12 months, and a chloropeth that shows states 
-	that have the most logins BY MONTH
-
+To do:
+- have the aggregate(scatter) chart be conditional - goes away when vistiro is clicked	
+	- make the Visitor List form clickable which returns the aggregate chart
+- do testing tomorrow morning 
+- work on a heatmap! 
+- re-factor 
+- call it a day
 
 
 
@@ -68,6 +70,7 @@ App ->
 	    VisitorDetails 
 
 VisitorList and App are the two container components 
+
 
 
 */

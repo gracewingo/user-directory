@@ -4,7 +4,6 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 export default class LoginChart extends PureComponent {
 
 	getDaysOfWeek() {
-		// What days of the week does a given user login most?
 		const obj = {};
 		const { id, logins } = this.props.data[0];
 		obj.id = id;
