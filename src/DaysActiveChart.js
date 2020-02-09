@@ -4,12 +4,9 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 export default class LoginChart extends PureComponent {
 
 	getDaysOfWeek() {
-		const obj = {};
 		const { id, logins } = this.props.data[0];
-		obj.id = id;
-		obj.logins = logins;
-		const loginArray = obj.logins.map((login) => new Date(login.date).toString().substr(0, 3));
-		obj.logins = loginArray;
+		const obj = {id: id, logins: logins};
+		obj.logins = obj.logins.map((login) => new Date(login.date).toString().substr(0, 3));
 		return obj;
 	}
 
@@ -25,17 +22,15 @@ export default class LoginChart extends PureComponent {
 		}
 		userLogins.logins = loginObj;
 		// Create an array of objects
-		let result = Object.keys(userLogins.logins).map((key) => ({
+		return Object.keys(userLogins.logins).map((key) => ({
 			day: key,
 			numberOfDaysActive: userLogins.logins[key]
 		}));
-		return result;
 	}
 
 	sortDaysOfWeek(data) {
 		const order = { Sun: 1, Mon: 2, Tue: 3, Wed: 4, Thu: 5, Fri: 6, Sat: 7 };
-		data.sort((a, b) => order[a.day] - order[b.day]);
-		return data;
+		return data.sort((a, b) => order[a.day] - order[b.day]);
 	}
 
 	render() {

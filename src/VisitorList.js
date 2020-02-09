@@ -19,7 +19,7 @@ export default class VisitorList extends React.Component {
 	};
 
 	showUserProfile = (id) => {
-		// When user is clicked, show their profile in Visitor Details.
+		// When auser is clicked, show their profile in Visitor Details.
 		let profileData = this.props.data.filter((user) => {
 			return user.id === Number(id);
 		});

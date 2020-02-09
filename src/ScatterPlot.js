@@ -1,23 +1,24 @@
 import React from 'react';
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { ScatterChart, Legend, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Label } from 'recharts';
 
 export default class ScatterPlot extends React.Component {
 	// Get the Total number of logins for all users, for each month
 	getLoginData() {
 		let monthArray = this.props.data.map((datum) => {
-			const obj = {};
-			obj.logins = datum.logins;
+			const obj = { logins: datum.logins };
 			return obj;
 		});
 		return monthArray;
 	}
 
-	getMonths(loginData) {
+	getTotalLogins(loginData) {
 		// For the year 2019, get the total logins for each month
+		// refactor so i don't need a nested for loop - use other array methods
 		let monthsIn2019 = {};
 		for (let i = 0; i < loginData.length; i++) {
 			for (let j = 0; j < loginData[i].logins.length; j++) {
 				let login = loginData[i].logins[j].date;
+
 				if (login.substr(0, 4) === '2019') {
 					let date1 = new Date(login);
 					let month = date1.getMonth();
@@ -33,72 +34,20 @@ export default class ScatterPlot extends React.Component {
 		return result19;
 	}
 
-	formatMonths(data) {
-        let copy = data.slice();
-        console.log(copy)
-		for (let i = 0; i < copy.length; i++) {
-            console.log(copy[i])
-			copy[i].month = Number(copy[i].month);
-			switch (copy[i].month) {
-				case 0:
-					copy[i].month = 'Jan';
-					break;
-				case 1:
-					copy[i].month = 'Feb';
-					break;
-				case 2:
-					copy[i].month = 'March';
-					break;
-				case 3:
-					copy[i].month = 'April';
-					break;
-				case 4:
-					copy[i].month = 'May';
-					break;
-				case 5:
-					copy[i].month = 'June';
-					break;
-				case 6:
-					copy[i].month = 'July';
-					break;
-				case 7:
-					copy[i].month = 'Aug';
-					break;
-				case 8:
-					copy[i].month = 'Sept';
-					break;
-				case 9:
-					copy[i].month = 'Oct';
-					break;
-				case 10:
-					copy[i].month = 'Nov';
-					break;
-				case 11:
-					copy[i].month = 'Dec';
-					break;
-				default:
-			}
-		}
-		return copy;
-    }
-    
-    getMin(data){
-    
-    }
-    
-    getMax(data){
-        // data.reduce((min, p) => p.totalLogins < min ? )
-    }
+	getMinAndMax(data) {
+		let min = data.reduce((min, cv) => (cv.totalLogins < min ? cv.totalLogins : min), data[0].totalLogins);
+		let max = data.reduce((max, cv) => (cv.totalLogins > max ? cv.totalLogins : max), data[0].totalLogins);
+		return [ min, max ];
+	}
 
 	render() {
 		let loginData = this.getLoginData();
-        let numberOfMonths = this.getMonths(loginData);
-        let copy = numberOfMonths.slice();
-        // let labels = this.formatMonths(numberOfMonths);
-        // console.log(labels)
-        // console.log(finalData);
-        let min = this.getMin(numberOfMonths);
-        let max = this.getMax(numberOfMonths);
+		let totalLogins = this.getTotalLogins(loginData);
+		// let labels = [ 'Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'Sept', 'Oct', 'Nov', 'Dec' ];
+		let min, max;
+		if (totalLogins.length) {
+			[ min, max ] = this.getMinAndMax(totalLogins);
+		}
 
 		return (
 			<ScatterChart
@@ -112,10 +61,11 @@ export default class ScatterPlot extends React.Component {
 				}}
 			>
 				<CartesianGrid />
-				<XAxis type="number" dataKey="month" name="month"/>
-				<YAxis type="number" domain={[740, 900]} dataKey="totalLogins" name="totalLogins" />
+				<XAxis type="number" dataKey="month" name="month" />
+				<YAxis type="number" domain={[ min - 15, max + 15 ]} dataKey="totalLogins" name="totalLogins" />
 				<Tooltip cursor={{ strokeDasharray: '3 3' }} />
-				<Scatter data={numberOfMonths} fill="#8884d8" />
+				<Legend />
+				<Scatter name="Monthly Logins in 2019, (0 = Jan, 1 = Feb)" data={totalLogins} fill="#8884d8" />
 			</ScatterChart>
 		);
 	}

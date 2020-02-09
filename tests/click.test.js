@@ -2,25 +2,23 @@ import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
-// figure out how to import the onClick 
+// Rendering 
+// when a Visitor is clicked, the Visitor details display  
 
 let container = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
   container = document.createElement("div");
-  // container *must* be attached to document so events work correctly.
   document.body.appendChild(container);
 });
 
 afterEach(() => {
-  // cleanup on exiting
   unmountComponentAtNode(container);
   container.remove();
   container = null;
 });
 
 
-it("display visitor details in preview pane", () => {
+it("displays visitor details in preview pane", () => {
     const onChange = jest.fn();
     act(() => {
       render(<Toggle onChange={onChange} />, container);

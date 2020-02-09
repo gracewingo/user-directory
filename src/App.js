@@ -3,7 +3,6 @@ import './App.css';
 import VisitorList from './VisitorList';
 import ScatterPlot from './ScatterPlot';
 
-
 export default class App extends React.Component {
 	state = {
 		userData: [],
@@ -51,7 +50,15 @@ export default class App extends React.Component {
 
 /*
 Sunday: 
-- 
+- focus on testing. build tests!
+- then, make agg chart conditional
+- add color to vis list background 
+- make min max on scatter plot dynamic 
+- re-factor, clean up code for best practices
+- add a legend/label to the scatter plot 
+- add a heatmap, other cool visualizations if i have time
+- fix the number of days active label, include a Legend with a year  
+
 
 To do:
 - have the aggregate(scatter) chart be conditional - goes away when vistiro is clicked	
