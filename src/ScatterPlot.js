@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScatterChart, Legend, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Label } from 'recharts';
+import { ScatterChart, Legend, Scatter, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 export default class ScatterPlot extends React.Component {
 	// Get the Total number of logins for all users, for each month
