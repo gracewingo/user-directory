@@ -28,7 +28,7 @@ export default class VisitorList extends React.Component {
 						})}
 					</ul>
 				</div>
-				{this.state.profileInfo.length ? (
+				{this.props.showVisitorList && this.state.profileInfo.length ? (
 					<div className="visitorDetails-container">
 						<VisitorDetails profileData={this.state.profileInfo} />
 						<DaysActiveChart data={this.state.profileInfo} />

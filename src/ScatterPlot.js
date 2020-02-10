@@ -64,7 +64,7 @@ export default class ScatterPlot extends React.Component {
 				<YAxis type="number" domain={[ min - 15, max + 15 ]} dataKey="totalLogins" name="totalLogins" />
 				<Tooltip cursor={{ strokeDasharray: '3 3' }} />
 				<Legend />
-				<Scatter name="Monthly Logins in 2019, (0 = Jan, 1 = Feb)" data={totalLogins} fill="#8884d8" />
+				<Scatter name="Monthly Logins Total Users, 2019, (0 = Jan, 1 = Feb)" data={totalLogins} fill="#8884d8" />
 			</ScatterChart>
 		);
 	}
