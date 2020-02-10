@@ -29,13 +29,14 @@ export default class App extends React.Component {
 	};
 
 	handleClick = () => {
-		// only allow clicks if scatter plot is not showing
+		// only allow clicks/ show button if scatter plot is NOT showing
 		this.setState({
 			showVisitorList: false
 		});
 	};
 
 	render() {
+		// console.log(this.state.showVisitorList)
 		let filteredUserData = this.state.userData.filter((user) => {
 			return user.first_name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
 		});
@@ -43,7 +44,7 @@ export default class App extends React.Component {
 		return (
 			<div className="appContainer">
 				<div data-testid="form" className="formContainer">
-					<h2 onClick={this.handleClick}>Visitor List</h2>
+					<h2>Visitor List</h2>
 					<label htmlFor="searchText" />
 					<input
 						id="searchText"
@@ -59,7 +60,7 @@ export default class App extends React.Component {
 				</div>
 				<VisitorList showVisitorList={this.state.showVisitorList} data={filteredUserData} />
 
-				<ScatterPlot data={this.state.userData} />
+				{/* <ScatterPlot data={this.state.userData} /> */}
 				<Heatmap data={this.state.userData} />
 			</div>
 		);
@@ -68,7 +69,7 @@ export default class App extends React.Component {
 
 
 
-
+// when i click a visitor, set the showVisitorList to true 
 
 
 
@@ -77,9 +78,7 @@ export default class App extends React.Component {
 
 /*
 Sunday: 
-- focus on testing. build tests!
 - then, make agg chart conditional
-- add color to vis list background 
 - add a heatmap, other cool visualizations if i have time
 - fix the number of days active label, include a Legend with a year  
 - fix width and height on visitor list 

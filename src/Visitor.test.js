@@ -1,20 +1,31 @@
 import React from 'react';
-import { shallow, configure } from 'enzyme'
+import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
+import { create } from 'react-test-renderer';
 
-import Visitor from './Visitor'
+import Visitor from './Visitor';
 
-configure({adapter: new Adapter()});
-it('shallow render', () => {
-    const user = [{id: 21, name: 'Bob'}];
-	shallow(<Visitor user={user}/>);
-});
+configure({ adapter: new Adapter() });
 
-it('simulates click events', () => {
-    const data = [{id: 21, name: 'Bob'}];
-    const showUserProfile = sinon.spy();
-    const wrapper = shallow(<Visitor user={data} showUserProfile={showUserProfile} />);
-    wrapper.find('li').simulate('click');
-    
+const user = [ { id: 21, name: 'Bob' } ];
+const showUserProfile = sinon.spy();
+
+
+describe('Visitor Component', () => {
+	it('matches the snapshot', () => {
+		const visitor = create(<Visitor user={user} />);
+		expect(visitor.toJSON()).toMatchSnapshot();
+	});
+
+	it('shallow render', () => {
+		shallow(<Visitor user={user} />);
+	});
+
+	it('simulates click events', () => {
+		const wrapper = shallow(<Visitor user={user} showUserProfile={showUserProfile} />);
+		wrapper.find('li').simulate('click');
+	});
+
+
 });

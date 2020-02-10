@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-export default class LoginChart extends PureComponent {
+export default class DaysActiveChart extends PureComponent {
 
 	getDaysOfWeek() {
+		// What days of the week does a given user login most? 
 		const { id, logins } = this.props.data[0];
 		const obj = {id: id, logins: logins};
 		obj.logins = obj.logins.map((login) => new Date(login.date).toString().substr(0, 3));
@@ -24,7 +25,7 @@ export default class LoginChart extends PureComponent {
 		// Create an array of objects
 		return Object.keys(userLogins.logins).map((key) => ({
 			day: key,
-			numberOfDaysActive: userLogins.logins[key]
+			mostActiveDaysPerUser_2019_2010: userLogins.logins[key]
 		}));
 	}
 
@@ -37,6 +38,7 @@ export default class LoginChart extends PureComponent {
 		let userLogins = this.getDaysOfWeek();
 		let actives = this.getMostActiveDays(userLogins);
 		let data = this.sortDaysOfWeek(actives);
+		console.log(data)
 
 		return (
 			<LineChart
@@ -55,20 +57,9 @@ export default class LoginChart extends PureComponent {
 				<YAxis />
 				<Tooltip />
 				<Legend />
-				<Line type="monotone" dataKey="numberOfDaysActive" stroke="#8884d8" activeDot={{ r: 8 }} />
+				<Line type="monotone" dataKey="mostActiveDaysPerUser_2019_2010" stroke="#8884d8" activeDot={{ r: 8 }} />
 			</LineChart>
 		);
 	}
 }
 
-/*
-
-display a line chart for each user 
-0, 5, 10, 15, 20 
-also, show a aggregated version in some way 
-
-xaxis: day of the week/login
-yaxis: 0 -20 
-
-
-*/

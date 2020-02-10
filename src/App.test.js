@@ -6,6 +6,9 @@ import App from './App';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, configure } from 'enzyme';
 import { fetchUserData } from './apiCalls';
+import sinon from 'sinon';
+
+import VisitorList from './VisitorList';
 
 it('renders without crashing', () => {
 	const div = document.createElement('div');
@@ -30,7 +33,6 @@ describe('apiCalls', () => {
 					});
 				})
 		}));
-
 		expect(fetchUserData()).resolves.toEqual({ userData: [] });
 	});
 
@@ -45,4 +47,13 @@ describe('apiCalls', () => {
 		const wrapper = shallow(<App />);
 		wrapper.find('input').at(0).simulate('change', { target: { name: 'search', value: '012' } });
 	});	
+
+	it('user text is being searched', () => {
+		const wrapper = shallow(<App />)
+		wrapper.find('input').simulate('change', {
+			target: { name: "search", value: "hello"}
+		})
+		expect(wrapper.find('input').props().value).toEqual('hello')
+	})
+
 });

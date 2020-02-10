@@ -5,7 +5,9 @@ const Visitor = ({user, showUserProfile }) => (
 		className="visitor"
 		key={user.id}
 		data-id={user.id}
-		onClick={() => showUserProfile(user.id)}
+		onClick={() => {
+			showUserProfile(user.id)
+		}}
 	>
 		{user.first_name} {user.last_name}
 	</li>

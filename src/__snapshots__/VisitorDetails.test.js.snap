@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VisitorDetails component Matches the snapshot 1`] = `
+<div
+  className="preview-pane"
+>
+  <h1>
+    Visitor Details
+  </h1>
+  <div
+    id="profile"
+  >
+    <div>
+      Name: 
+       
+    </div>
+    <div>
+      City: 
+    </div>
+    <div>
+      State: 
+    </div>
+    <div>
+      Safe email: 
+    </div>
+    <div>
+      Email: 
+    </div>
+  </div>
+</div>
+`;

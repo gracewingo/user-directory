@@ -2,10 +2,11 @@ import React from 'react';
 import Visitor from './Visitor';
 import VisitorDetails from './VisitorDetails';
 import DaysActiveChart from './DaysActiveChart';
+import ScatterPlot from './ScatterPlot';
 
 export default class VisitorList extends React.Component {
 	state = {
-		profileInfo: []
+		profileInfo: [],
 	};
 
 	showUserProfile = (id) => {
@@ -14,7 +15,7 @@ export default class VisitorList extends React.Component {
 			return user.id === Number(id);
 		});
 		this.setState({
-			profileInfo: profileData
+			profileInfo: profileData,
 		});
 	};
 
@@ -28,13 +29,16 @@ export default class VisitorList extends React.Component {
 						})}
 					</ul>
 				</div>
-				{this.props.showVisitorList && this.state.profileInfo.length ? (
+				{this.state.profileInfo.length ? (
 					<div className="visitorDetails-container">
 						<VisitorDetails profileData={this.state.profileInfo} />
 						<DaysActiveChart data={this.state.profileInfo} />
 					</div>
-				) : null}
+				) : null
+			}
 			</div>
 		);
 	}
 }
+
+//  <ScatterPlot data={this.props.data}  />
