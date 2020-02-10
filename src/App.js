@@ -9,8 +9,7 @@ export default class App extends React.Component {
 	state = {
 		userData: [],
 		search: '',
-		errorStatus: '',
-		showVisitorList: false
+		errorStatus: ''
 	};
 
 	async componentDidMount() {
@@ -28,15 +27,7 @@ export default class App extends React.Component {
 		});
 	};
 
-	handleClick = () => {
-		// only allow clicks/ show button if scatter plot is NOT showing
-		this.setState({
-			showVisitorList: false
-		});
-	};
-
 	render() {
-		// console.log(this.state.showVisitorList)
 		let filteredUserData = this.state.userData.filter((user) => {
 			return user.first_name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
 		});
@@ -54,52 +45,10 @@ export default class App extends React.Component {
 						value={this.state.search}
 						onChange={this.updateSearch}
 					/>
-					<div>
-						<button onClick={this.handleClick}>Click to see all users</button>
-					</div>
 				</div>
-				<VisitorList showVisitorList={this.state.showVisitorList} data={filteredUserData} />
-
-				{/* <ScatterPlot data={this.state.userData} /> */}
+				<VisitorList data={filteredUserData} />
 				<Heatmap data={this.state.userData} />
 			</div>
 		);
 	}
 }
-
-
-
-// when i click a visitor, set the showVisitorList to true 
-
-
-
-
-
-
-/*
-Sunday: 
-- then, make agg chart conditional
-- add a heatmap, other cool visualizations if i have time
-- fix the number of days active label, include a Legend with a year  
-- fix width and height on visitor list 
-
-if a user is on the homepage, show all users,
-otherwise, show individual charts
-to navigaete back to all users, click the button 
-
-To do:
-- have the aggregate(scatter) chart be conditional - goes away when vistiro is clicked	
-	- make the Visitor List form clickable which returns the aggregate chart
-
-
-Code structure:
-App -> 
-	VisitorList -> 
-		Visitor ->
-	    VisitorDetails 
-
-VisitorList and App are the two container components 
-
-
-
-*/

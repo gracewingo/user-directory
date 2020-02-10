@@ -38,7 +38,6 @@ export default class DaysActiveChart extends PureComponent {
 		let userLogins = this.getDaysOfWeek();
 		let actives = this.getMostActiveDays(userLogins);
 		let data = this.sortDaysOfWeek(actives);
-		console.log(data)
 
 		return (
 			<LineChart

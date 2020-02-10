@@ -7,6 +7,7 @@ import ScatterPlot from './ScatterPlot';
 export default class VisitorList extends React.Component {
 	state = {
 		profileInfo: [],
+		toggleAllUserData: true
 	};
 
 	showUserProfile = (id) => {
@@ -15,7 +16,14 @@ export default class VisitorList extends React.Component {
 			return user.id === Number(id);
 		});
 		this.setState({
-			profileInfo: profileData,
+			profileInfo: profileData
+		});
+	};
+
+	handleClick = (event) => {
+		// Cn click render the Scatterplot.
+		this.setState({
+			profileInfo: []
 		});
 	};
 
@@ -30,15 +38,19 @@ export default class VisitorList extends React.Component {
 					</ul>
 				</div>
 				{this.state.profileInfo.length ? (
-					<div className="visitorDetails-container">
-						<VisitorDetails profileData={this.state.profileInfo} />
-						<DaysActiveChart data={this.state.profileInfo} />
+					<div>
+						<div>
+							<button onClick={this.handleClick}>Click to see all users Charts</button>
+						</div>
+						<div className="visitorDetails-container">
+							<VisitorDetails profileData={this.state.profileInfo} />
+							<DaysActiveChart data={this.state.profileInfo} />
+						</div>
 					</div>
-				) : null
-			}
+				) : (
+					<ScatterPlot data={this.props.data} />
+				)}
 			</div>
 		);
 	}
 }
-
-//  <ScatterPlot data={this.props.data}  />
