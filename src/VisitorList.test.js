@@ -34,7 +34,7 @@ describe('<VisitorList />', () => {
 		expect(wrapper.find(DaysActiveChart).length);
 	});
 
-	// when i click a visitor, that should update the state of show profile
+	// When i click a visitor, that should update the state of show profile
 	it('should update profileInfo state', () => {
 		const wrapper = mount(<VisitorList data={data} showVisitorList={showVisitorList} />);
 		expect(wrapper.state().profileInfo).toEqual([]);

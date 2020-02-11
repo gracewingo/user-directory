@@ -13,7 +13,6 @@ export default class ScatterPlot extends React.Component {
 
 	getTotalLogins(loginData) {
 		// For the year 2019, get the total logins for each month
-		// refactor so i don't need a nested for loop - use other array methods
 		let monthsIn2019 = {};
 		for (let i = 0; i < loginData.length; i++) {
 			for (let j = 0; j < loginData[i].logins.length; j++) {
