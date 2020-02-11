@@ -6,7 +6,6 @@ import ScatterPlot from './ScatterPlot';
 import Heatmap from './Heatmap';
 import { Button } from 'reactstrap';
 
-
 export default class VisitorList extends React.Component {
 	state = {
 		profileInfo: []
@@ -30,7 +29,6 @@ export default class VisitorList extends React.Component {
 	};
 
 	render() {
-			console.log(this.props.data)
 		return (
 			<div className="visitorContainer">
 				<div className="visitorList-pane">
@@ -42,23 +40,23 @@ export default class VisitorList extends React.Component {
 				</div>
 				{this.state.profileInfo.length ? (
 					<div>
-						<div>
-							<Button style={{margin: '10px'}} onClick={this.handleClick} color="info"> Login Data - All Visitors </Button>
-						</div>
+						<Button style={{ margin: '10px' }} onClick={this.handleClick} color="info">
+							{' '}
+							Login Data - All Visitors{' '}
+						</Button>
 						<div className="visitorDetails-container">
 							<VisitorDetails profileData={this.state.profileInfo} />
 							<DaysActiveChart data={this.state.profileInfo} />
 						</div>
 					</div>
 				) : (
-					
 					<div>
 						{this.props.data.length === this.props.dataLength ? (
 							<div>
 								<ScatterPlot data={this.props.data} />
 								<Heatmap data={this.props.data} />
 							</div>
-						): null}
+						) : null}
 					</div>
 				)}
 			</div>
