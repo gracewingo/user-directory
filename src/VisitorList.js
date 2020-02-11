@@ -53,7 +53,7 @@ export default class VisitorList extends React.Component {
 				) : (
 					
 					<div>
-						{this.props.data.length === 200 ? (
+						{this.props.data.length === this.props.dataLength ? (
 							<div>
 								<ScatterPlot data={this.props.data} />
 								<Heatmap data={this.props.data} />

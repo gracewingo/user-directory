@@ -7,13 +7,14 @@ export default class App extends React.Component {
 	state = {
 		userData: [],
 		search: '',
-		errorStatus: ''
+		errorStatus: '',
+		dataLength: ""
 	};
 
 	async componentDidMount() {
 		try {
 			const data = await fetchUserData();
-			this.setState({ userData: data });
+			this.setState({ userData: data, dataLength: data.length });
 		} catch (err) {
 			this.setState({ errorStatus: err.message });
 		}
@@ -45,7 +46,7 @@ export default class App extends React.Component {
 						onChange={this.updateSearch}
 					/>
 				</div>
-				<VisitorList data={filteredUserData} />
+				<VisitorList data={filteredUserData} dataLength={this.state.dataLength} />
 			</div>
 		);
 	}

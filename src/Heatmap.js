@@ -35,7 +35,7 @@ export default class Heatmap extends React.Component {
 		}
 
 		for (let i = 0; i < values.length; i++) {
-			if (values[i].count < 20) {
+			if (values[i].count <= 20) {
 				values[i].count = 20;
 			} else if (values[i].count > 20 && values[i].count <= 25) {
 				values[i].count = 25;
