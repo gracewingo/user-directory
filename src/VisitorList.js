@@ -3,6 +3,9 @@ import Visitor from './Visitor';
 import VisitorDetails from './VisitorDetails';
 import DaysActiveChart from './DaysActiveChart';
 import ScatterPlot from './ScatterPlot';
+import Heatmap from './Heatmap';
+import { Button } from 'reactstrap';
+
 
 export default class VisitorList extends React.Component {
 	state = {
@@ -40,7 +43,7 @@ export default class VisitorList extends React.Component {
 				{this.state.profileInfo.length ? (
 					<div>
 						<div>
-							<button onClick={this.handleClick}>Click to see all users Charts</button>
+							<Button style={{margin: '10px'}}onClick={this.handleClick} color="info">Click to see all users Charts</Button>
 						</div>
 						<div className="visitorDetails-container">
 							<VisitorDetails profileData={this.state.profileInfo} />
@@ -48,7 +51,10 @@ export default class VisitorList extends React.Component {
 						</div>
 					</div>
 				) : (
-					<ScatterPlot data={this.props.data} />
+					<div>
+						<ScatterPlot data={this.props.data} />
+						<Heatmap data={this.props.data} />
+					</div>
 				)}
 			</div>
 		);

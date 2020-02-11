@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
 import VisitorList from './VisitorList';
-import ScatterPlot from './ScatterPlot';
 import { fetchUserData } from './apiCalls';
-import Heatmap from './Heatmap';
 
 export default class App extends React.Component {
 	state = {
@@ -47,7 +45,6 @@ export default class App extends React.Component {
 					/>
 				</div>
 				<VisitorList data={filteredUserData} />
-				<Heatmap data={this.state.userData} />
 			</div>
 		);
 	}
