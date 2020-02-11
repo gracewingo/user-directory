@@ -22,6 +22,7 @@ export default class App extends React.Component {
 	updateSearch = (event) => {
 		this.setState({
 			[event.target.name]: event.target.value.substr(0, 20)
+			
 		});
 	};
 

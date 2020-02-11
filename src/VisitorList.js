@@ -9,8 +9,7 @@ import { Button } from 'reactstrap';
 
 export default class VisitorList extends React.Component {
 	state = {
-		profileInfo: [],
-		toggleAllUserData: true
+		profileInfo: []
 	};
 
 	showUserProfile = (id) => {
@@ -24,13 +23,14 @@ export default class VisitorList extends React.Component {
 	};
 
 	handleClick = (event) => {
-		// Cn click render the Scatterplot.
+		// On click render the Scatterplot and Heatmap.
 		this.setState({
 			profileInfo: []
 		});
 	};
 
 	render() {
+			console.log(this.props.data)
 		return (
 			<div className="visitorContainer">
 				<div className="visitorList-pane">
@@ -43,7 +43,7 @@ export default class VisitorList extends React.Component {
 				{this.state.profileInfo.length ? (
 					<div>
 						<div>
-							<Button style={{margin: '10px'}}onClick={this.handleClick} color="info">Click to see Charts across All Visitors</Button>
+							<Button style={{margin: '10px'}} onClick={this.handleClick} color="info"> Login Data - All Visitors </Button>
 						</div>
 						<div className="visitorDetails-container">
 							<VisitorDetails profileData={this.state.profileInfo} />
@@ -51,9 +51,14 @@ export default class VisitorList extends React.Component {
 						</div>
 					</div>
 				) : (
+					
 					<div>
-						<ScatterPlot data={this.props.data} />
-						<Heatmap data={this.props.data} />
+						{this.props.data.length === 200 ? (
+							<div>
+								<ScatterPlot data={this.props.data} />
+								<Heatmap data={this.props.data} />
+							</div>
+						): null}
 					</div>
 				)}
 			</div>

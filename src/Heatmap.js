@@ -58,7 +58,7 @@ export default class Heatmap extends React.Component {
 			<div>
 				<CalendarHeatmap
 					startDate={new Date('2019-01-01')}
-					endDate={new Date('2020-02-10')}
+					endDate={new Date('2020-01-31')}
 					values={values}
 					classForValue={(value) => {
 						if (!value) {
