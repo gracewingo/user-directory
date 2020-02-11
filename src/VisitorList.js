@@ -43,7 +43,7 @@ export default class VisitorList extends React.Component {
 				{this.state.profileInfo.length ? (
 					<div>
 						<div>
-							<Button style={{margin: '10px'}}onClick={this.handleClick} color="info">Click to see all users Charts</Button>
+							<Button style={{margin: '10px'}}onClick={this.handleClick} color="info">Click to see Charts across All Visitors</Button>
 						</div>
 						<div className="visitorDetails-container">
 							<VisitorDetails profileData={this.state.profileInfo} />
