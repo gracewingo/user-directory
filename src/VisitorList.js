@@ -44,6 +44,7 @@ export default class VisitorList extends React.Component {
 							{' '}
 							Login Data - All Visitors{' '}
 						</Button>
+
 						<div className="visitorDetails-container">
 							<VisitorDetails profileData={this.state.profileInfo} />
 							<DaysActiveChart data={this.state.profileInfo} />

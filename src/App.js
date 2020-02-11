@@ -8,7 +8,8 @@ export default class App extends React.Component {
 		userData: [],
 		search: '',
 		errorStatus: '',
-		dataLength: ""
+		dataLength: '',
+		isSearching: false
 	};
 
 	async componentDidMount() {
@@ -21,10 +22,17 @@ export default class App extends React.Component {
 	}
 
 	updateSearch = (event) => {
+		const { name, value } = event.target;
 		this.setState({
-			[event.target.name]: event.target.value.substr(0, 20)
-			
+			[name]: value.substr(0, 20),
+			isSearching: true
 		});
+		setTimeout(() => {
+			this.setState({
+				[name]: '',
+				isSearching: false
+			});
+		}, 5000);
 	};
 
 	render() {
