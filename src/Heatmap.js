@@ -7,8 +7,8 @@ export default class Heatmap extends React.Component {
 		let logins = [];
 		for (let i = 0; i < props.data.length; i++) {
 			logins.push(props.data[i].logins);
-        }
-        
+		}
+
 		let flattened = logins.reduce((acc, cv) => {
 			return acc.concat(cv);
 		}, []);
@@ -32,27 +32,27 @@ export default class Heatmap extends React.Component {
 		for (let i = 0; i < keys.length; i++) {
 			let obj = { date: keys[i], count: data[keys[i]] };
 			values.push(obj);
-        }
+		}
 
-        for (let i = 0; i < values.length; i++){
-            if (values[i].count < 20){
-                values[i].count = 20
-            } else if (values[i].count > 20 && values[i].count <= 25){
-                values[i].count = 25 
-            } else if (values[i].count > 25 && values[i].count <= 30){
-                values[i].count = 30
-            } else if (values[i].count > 30 && values[i].count <= 35){
-                values[i].count = 35
-            } else if (values[i].count > 35 && values[i].count <= 40){
-                values[i].count = 40
-            }
-        }
-        return values;
+		for (let i = 0; i < values.length; i++) {
+			if (values[i].count < 20) {
+				values[i].count = 20;
+			} else if (values[i].count > 20 && values[i].count <= 25) {
+				values[i].count = 25;
+			} else if (values[i].count > 25 && values[i].count <= 30) {
+				values[i].count = 30;
+			} else if (values[i].count > 30 && values[i].count <= 35) {
+				values[i].count = 35;
+			} else if (values[i].count > 35 && values[i].count <= 40) {
+				values[i].count = 40;
+			}
+		}
+		return values;
 	}
 
 	render() {
-        let data = this.getValues(this.props);
-        let values = this.formatData(data);
+		let data = this.getValues(this.props);
+		let values = this.formatData(data);
 
 		return (
 			<div>

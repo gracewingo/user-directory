@@ -2,11 +2,10 @@ import React, { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 export default class DaysActiveChart extends PureComponent {
-
 	getDaysOfWeek() {
-		// What days of the week does a given user login most? 
+		// What days of the week does a given user login most?
 		const { id, logins } = this.props.data[0];
-		const obj = {id: id, logins: logins};
+		const obj = { id: id, logins: logins };
 		obj.logins = obj.logins.map((login) => new Date(login.date).toString().substr(0, 3));
 		return obj;
 	}
@@ -61,4 +60,3 @@ export default class DaysActiveChart extends PureComponent {
 		);
 	}
 }
-
