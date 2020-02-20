@@ -30,7 +30,6 @@ input {
 }
 
 /* Visitor List */
-
 .mainContent {
 	display: flex;
 	flex-direction: row;
@@ -42,7 +41,7 @@ input {
 }
 
 .visitorList-pane {
-	height: 79em;
+	height: 81em;
 	min-width: 16em;
 	overflow: scroll;
 }
@@ -75,7 +74,7 @@ input {
 
 .visitorDetailsContainer {
 	display: flex;
-	margin-top: 2em;
+	margin-top: 1.5em;
 }
 
 .visitorProfileContainer {
@@ -85,12 +84,15 @@ input {
 }
 
 .visitorProfileContainer .profile-info {
-  padding-bottom: 3em;
+  padding-bottom: 1.5em;
 }
 
 .aggregateCharts {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 2em;
+}
+
+.recharts-wrapper {
+	margin-bottom: 2em;
 }

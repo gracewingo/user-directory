@@ -1,5 +1,5 @@
 import React from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 export default class ScatterPlot extends React.Component {
 	// Get the Total number of logins for all users, for each month
@@ -113,7 +113,9 @@ export default class ScatterPlot extends React.Component {
 				<XAxis dataKey="month" />
 				<YAxis />
 				<Tooltip />
-				<Area type="monotone" dataKey="Total Logins" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+				<Area name="Total Logins Per Month, 2019" type="monotone" dataKey="Total Logins" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+				<Legend verticalAlign="bottom" />
+				
 			</AreaChart>
 		);
 	}
