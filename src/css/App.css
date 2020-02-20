@@ -1,0 +1,96 @@
+.appContainer {
+	margin-left: 0em !important;
+}
+
+/* Form  */
+.formContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	color: white;
+	background-color: #00d4ff;
+	position: fixed;
+	top: 0;
+	z-index: 1;
+	height: 5em;
+	margin-block-start: 0em;
+	margin-top: 0em;
+	width: 13em;
+}
+
+.formContainer > h2 {
+   margin-top: 2em;
+   color: black;
+}
+
+input {
+	padding: 1em;
+	width: 13em;
+}
+
+/* Visitor List */
+
+.mainContent {
+	display: flex;
+	flex-direction: row;
+}
+
+.visitorContainer {
+	display: flex;
+	flex-direction: row;
+}
+
+.visitorList-pane {
+	height: 79em;
+	min-width: 16em;
+	overflow: scroll;
+}
+
+.visitorList {
+	padding: 2em;
+	margin-top: 7.5em;
+	list-style-type: none;
+}
+
+.visitorContainer .visitor {
+	padding-left: .5em;
+}
+
+.visitor {
+	cursor: pointer;
+}
+
+/* Visitor Details */
+
+.mainContent .homeHeader {
+  margin: 6em;
+  font-size: 2em;
+}
+
+.visitorData{
+	display: flex;
+	flex-direction: column;
+}
+
+.visitorDetailsContainer {
+	display: flex;
+	margin-top: 2em;
+}
+
+.visitorProfileContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.visitorProfileContainer .profile-info {
+  padding-bottom: 3em;
+}
+
+.aggregateCharts {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 2em;
+}

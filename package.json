@@ -1,5 +1,5 @@
 {
-  "name": "fire-eye",
+  "name": "user-directory",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,9 +10,10 @@
     "react": "^16.12.0",
     "react-calendar-heatmap": "^1.8.1",
     "react-dom": "^16.12.0",
+    "react-icons": "^3.9.0",
     "react-scripts": "3.3.1",
+    "react-toggle": "^4.1.1",
     "react-tooltip": "^4.0.3",
-    "reactstrap": "^8.4.1",
     "recharts": "^2.0.0-beta.1",
     "semantic-ui-react": "^0.88.2",
     "sinon": "^8.1.1"

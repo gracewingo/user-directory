@@ -1,8 +1,9 @@
 import React from 'react';
 
 const VisitorDetails = ({ profileData }) => (
-	<div className="preview-pane">
-		<h1>Visitor Details</h1>
+	
+	<div className="profile-info">
+		<h1> Visitor Details</h1>
 		<div id="profile">
 			<div>
 				Name: {profileData[0].first_name} {profileData[0].last_name}

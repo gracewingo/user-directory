@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-export default class DaysActiveChart extends PureComponent {
+export default class DaysActiveChart extends React.Component {
 	getDaysOfWeek() {
 		// What days of the week does a given user login most?
 		const { id, logins } = this.props.data[0];
@@ -11,7 +11,7 @@ export default class DaysActiveChart extends PureComponent {
 	}
 
 	getMostActiveDays(userLogins) {
-		// For each user, count the active days
+		// For the user that is active/clicked, count the active days
 		let loginObj = {};
 		for (let i = 0; i < userLogins.logins.length; i++) {
 			if (loginObj[userLogins.logins[i]]) {
@@ -24,7 +24,7 @@ export default class DaysActiveChart extends PureComponent {
 		// Create an array of objects
 		return Object.keys(userLogins.logins).map((key) => ({
 			day: key,
-			mostActiveDaysPerUser_2019_2010: userLogins.logins[key]
+			'Most Active Days Per Week, 2019-2020': userLogins.logins[key]
 		}));
 	}
 
@@ -55,7 +55,7 @@ export default class DaysActiveChart extends PureComponent {
 				<YAxis />
 				<Tooltip />
 				<Legend />
-				<Line type="monotone" dataKey="mostActiveDaysPerUser_2019_2010" stroke="#8884d8" activeDot={{ r: 8 }} />
+				<Line type="monotone" dataKey="Most Active Days Per Week, 2019-2020" stroke="#8884d8" activeDot={{ r: 8 }} />
 			</LineChart>
 		);
 	}

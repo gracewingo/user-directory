@@ -1,21 +1,20 @@
 import React from 'react';
-import './App.css';
+import './css/App.css';
 import VisitorList from './VisitorList';
-import { fetchUserData } from './apiCalls';
+import { fetchUserData } from './api/apiCalls';
+import Form from './Form';
 
 export default class App extends React.Component {
 	state = {
 		userData: [],
 		search: '',
-		errorStatus: '',
-		dataLength: '',
-		isSearching: false
+		errorStatus: ''
 	};
 
 	async componentDidMount() {
 		try {
 			const data = await fetchUserData();
-			this.setState({ userData: data, dataLength: data.length });
+			this.setState({ userData: data });
 		} catch (err) {
 			this.setState({ errorStatus: err.message });
 		}
@@ -24,37 +23,31 @@ export default class App extends React.Component {
 	updateSearch = (event) => {
 		const { name, value } = event.target;
 		this.setState({
-			[name]: value.substr(0, 20),
-			isSearching: true
+			[name]: value.substr(0, 20)
 		});
-		setTimeout(() => {
-			this.setState({
-				[name]: '',
-				isSearching: false
-			});
-		}, 5000);
 	};
 
 	render() {
-		let filteredUserData = this.state.userData.filter((user) => {
-			return user.first_name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+		const dataLength = this.state.userData.length;
+		
+		const sorted = this.state.userData.sort((a, b) => {
+			if (a.last_name < b.last_name) { return -1;}
+			if (a.last_name > b.last_name) { return 1;}
+			return 0;
+		});
+
+		// Search by first and last name
+		let filteredUserData = sorted.filter((user) => {
+			return (
+				user.first_name.concat(` ${user.last_name}`).toLowerCase().indexOf(this.state.search.toLowerCase()) !==
+				-1
+			);
 		});
 
 		return (
 			<div className="appContainer">
-				<div data-testid="form" className="formContainer">
-					<h2>Visitor List</h2>
-					<label htmlFor="searchText" />
-					<input
-						id="searchText"
-						type="text"
-						name="search"
-						placeholder="Search"
-						value={this.state.search}
-						onChange={this.updateSearch}
-					/>
-				</div>
-				<VisitorList data={filteredUserData} dataLength={this.state.dataLength} />
+				<Form searchText={this.state.search} updateSearch={this.updateSearch} />
+				<VisitorList data={filteredUserData} dataLength={dataLength} />
 			</div>
 		);
 	}

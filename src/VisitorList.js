@@ -1,65 +1,75 @@
 import React from 'react';
 import Visitor from './Visitor';
-import VisitorDetails from './VisitorDetails';
 import DaysActiveChart from './DaysActiveChart';
-import ScatterPlot from './ScatterPlot';
+import VisitorDetails from './VisitorDetails';
+import Toggle from 'react-toggle';
+import './css/Toggle.css';
+import AreaChart from './AreaChart';
 import Heatmap from './Heatmap';
-import { Button } from 'reactstrap';
 
 export default class VisitorList extends React.Component {
 	state = {
-		profileInfo: []
+		profileInfo: [],
+		showAggregateCharts: false
 	};
 
 	showUserProfile = (id) => {
 		// When a user is clicked, show their profile in Visitor Details.
-		let profileData = this.props.data.filter((user) => {
-			return user.id === Number(id);
-		});
+		let profileData = this.props.data.filter((user) => user.id === Number(id));
+
 		this.setState({
 			profileInfo: profileData
 		});
 	};
 
-	handleClick = (event) => {
-		// On click render the Scatterplot and Heatmap.
-		this.setState({
-			profileInfo: []
-		});
+	handleVisitorClick = (id) => {
+		return this.showUserProfile(id);
+	};
+
+	// this is a first class function. it is a function assigned to a variable
+	handleChartChange = () => {
+		this.setState((state) => ({
+			showAggregateCharts: !state.showAggregateCharts
+		}));
 	};
 
 	render() {
 		return (
-			<div className="visitorContainer">
+			<div className="mainContent">
 				<div className="visitorList-pane">
 					<ul className="visitorList">
 						{this.props.data.map((user) => {
-							return <Visitor key={user.id} user={user} showUserProfile={this.showUserProfile} />;
+							return <Visitor key={user.id} user={user} handleClick={this.handleVisitorClick} />;
 						})}
 					</ul>
 				</div>
-				{this.state.profileInfo.length ? (
-					<div>
-						<Button style={{ margin: '10px' }} onClick={this.handleClick} color="info">
-							{' '}
-							Login Data - All Visitors{' '}
-						</Button>
+				<div className="visitorData">
+					{!this.state.profileInfo.length ? (
+						<p className="homeHeader">Select a User</p>
+					) : (
+						<div className="visitorDetailsContainer">
+							<label className="visitorToggle">
+								<Toggle
+									defaultChecked={this.state.showAggregateCharts}
+									className="theme-color"
+									onChange={this.handleChartChange}
+								/>
+								<span>Show All Visitor Data</span>
+							</label>
 
-						<div className="visitorDetails-container">
-							<VisitorDetails profileData={this.state.profileInfo} />
-							<DaysActiveChart data={this.state.profileInfo} />
-						</div>
-					</div>
-				) : (
-					<div>
-						{this.props.data.length === this.props.dataLength ? (
-							<div>
-								<ScatterPlot data={this.props.data} />
-								<Heatmap data={this.props.data} />
+							<div className="visitorProfileContainer">
+								<VisitorDetails profileData={this.state.profileInfo} />
+								<DaysActiveChart data={this.state.profileInfo} />
 							</div>
-						) : null}
-					</div>
-				)}
+						</div>
+					)}
+					{this.state.showAggregateCharts ? (
+						<div className="aggregateCharts">
+							<AreaChart data={this.props.data} />
+							<Heatmap data={this.props.data} />
+						</div>
+					) : null}
+				</div>
 			</div>
 		);
 	}

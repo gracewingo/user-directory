@@ -1,9 +1,10 @@
 import React from 'react';
 import CalendarHeatmap from 'react-calendar-heatmap';
+import './css/Heatmap.css'
 import ReactTooltip from 'react-tooltip';
 
 export default class Heatmap extends React.Component {
-	getValues(props) {
+	getDateValues(props) {
 		let logins = [];
 		for (let i = 0; i < props.data.length; i++) {
 			logins.push(props.data[i].logins);
@@ -26,7 +27,7 @@ export default class Heatmap extends React.Component {
 		return obj;
 	}
 
-	formatData(data) {
+	formatDateData(data) {
 		let values = [];
 		let keys = Object.keys(data);
 		for (let i = 0; i < keys.length; i++) {
@@ -51,8 +52,8 @@ export default class Heatmap extends React.Component {
 	}
 
 	render() {
-		let data = this.getValues(this.props);
-		let values = this.formatData(data);
+		let data = this.getDateValues(this.props);
+		let values = this.formatDateData(data);
 
 		return (
 			<div>

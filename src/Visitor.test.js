@@ -26,6 +26,4 @@ describe('Visitor Component', () => {
 		const wrapper = shallow(<Visitor user={user} showUserProfile={showUserProfile} />);
 		wrapper.find('li').simulate('click');
 	});
-
-
 });
